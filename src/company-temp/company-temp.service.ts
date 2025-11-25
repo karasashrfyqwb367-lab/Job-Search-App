@@ -82,6 +82,19 @@ const userId = (user as any)._id as Types.ObjectId
   }
 
 
+  async getCompanyWithJobs(companyId: string) {
+  const company = await this.companyModel
+    .findById(companyId)
+    .populate("jobs"); 
+
+  if (!company) {
+    throw new NotFoundException("Company not found");
+  }
+
+  return company;
+}
+
+
   async searchCompanyByName(name: string) {
   const regex = new RegExp(name, 'i'); 
   return this.companyModel.find({ companyName: regex }).exec();

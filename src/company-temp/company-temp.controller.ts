@@ -35,6 +35,10 @@ async updateCompany(
   }
 
 /***************************Get specific company with related jobs. (2 Grades)************************** */
+@Get("with-jobs/:companyId")
+async getCompanyWithJobs(@Param("companyId") companyId: string) {
+  return this.companyTempService.getCompanyWithJobs(companyId);
+}
 
 
 /************************************************* */

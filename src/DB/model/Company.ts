@@ -92,8 +92,13 @@ coverPic?: { secure_url: string; public_id: string };
 
   }
 
-export const CompanySchema = SchemaFactory.createForClass(Company);
 
+export const CompanySchema = SchemaFactory.createForClass(Company);
+  CompanySchema.virtual("jobs", {
+  ref: "Job",
+  localField: "_id",
+  foreignField: "company",
+});
 export type CompanyDocument = HydratedDocument<Company>;
 
 export const companyModel = MongooseModule.forFeature([
